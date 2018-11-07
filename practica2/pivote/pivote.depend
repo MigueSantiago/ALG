@@ -1,0 +1,69 @@
+# depslib dependency file v1.0
+1403696506 source:c:\users\zed warck\desktop\alg practicas\pivote\pivote.cpp
+	<iostream>
+	<vector>
+	<cstdlib>
+	<time.h>
+	<math.h>
+	"pivote.h"
+
+1403696507 c:\users\zed warck\desktop\alg practicas\pivote\pivote.h
+	<vector>
+
+1403696745 source:c:\users\zed warck\desktop\alg practicas\pivote\practica2.cpp
+	<iostream>
+	<cstdlib>
+	<math.h>
+	"pivote.h"
+
+1403787979 source:c:\dropbox\uni\2\alg\alg practicas\pivote\pivote.cpp
+	<iostream>
+	<vector>
+	<cstdlib>
+	<time.h>
+	<math.h>
+	"pivote.h"
+
+1403696507 c:\dropbox\uni\2\alg\alg practicas\pivote\pivote.h
+	<vector>
+
+1404039278 source:c:\dropbox\uni\2\alg\alg practicas\pivote\practica2.cpp
+	<iostream>
+	<cstdlib>
+	<math.h>
+	"pivote.h"
+
+1403784379 source:c:\users\hercules\dropbox\universidad compartida\algoritmica\practicas jose\pivote\pivote.cpp
+	<iostream>
+	<vector>
+	<cstdlib>
+	<time.h>
+	<math.h>
+	"pivote.h"
+
+1403692907 c:\users\hercules\dropbox\universidad compartida\algoritmica\practicas jose\pivote\pivote.h
+	<vector>
+
+1404049262 source:c:\users\hercules\dropbox\universidad compartida\algoritmica\practicas jose\pivote\practica2.cpp
+	<iostream>
+	<cstdlib>
+	<math.h>
+	"pivote.h"
+
+1403784379 source:c:\users\hercules\desktop\algoritmica\pivote\pivote.cpp
+	<iostream>
+	<vector>
+	<cstdlib>
+	<time.h>
+	<math.h>
+	"pivote.h"
+
+1403692907 c:\users\hercules\desktop\algoritmica\pivote\pivote.h
+	<vector>
+
+1404049873 source:c:\users\hercules\desktop\algoritmica\pivote\practica2.cpp
+	<iostream>
+	<cstdlib>
+	<math.h>
+	"pivote.h"
+

@@ -1,0 +1,177 @@
+#include <iostream>
+#include <ctime>
+#include <cstdlib>
+#include <climits>
+#include <cassert>
+#include <cmath>
+#include <vector>
+#include <fstream>
+#include <algorithm>
+
+
+using namespace std;
+
+/*istream & operator >>(istream&is, vector<int> &Conjunto){
+  is>>numero;
+  return is;
+}
+*/
+istream & operator >>(istream&is, vector<int> &Conjunto){
+  int numero;
+  while (is>>numero){
+     Conjunto.push_back(numero);
+  }
+  return is;
+}
+
+void Completar_Analisis(int matriz[50][50],int filas,int columnas){	
+	for(int i=1;i<filas;i++){
+		matriz[i][i]=0;
+	}	
+	
+	for(int i=1;i<filas; i++){
+		for(int j=1; j<=columnas; j++){
+			
+			if(matriz[i][0]<matriz[0][j]){
+						
+				int valor;
+				valor=matriz[0][j]-matriz[i][0]+1;
+			
+				matriz[i][j]=matriz[i-1][valor];
+			
+			}else if(matriz[0][j]<matriz[i][0]){
+				matriz[i][j]=matriz[0][j];
+			}
+		}
+	}
+}
+void Rellenar_matriz(int matriz[50][50],vector <int> datos,int filas,int columnas){
+	int cont=1;
+	matriz[0][0]=0;
+
+	while(cont<columnas){
+		matriz[0][cont]=cont-1;
+		cont++;
+	}
+	for (int i=1; i<filas;i++){
+		matriz[i][0]=datos.at(i-1);
+	}
+
+	Completar_Analisis(matriz,filas,columnas);
+}
+
+void Imprime_matriz(int matriz[50][50],int filas,int columnas){
+	for(int i=0; i<filas; i++){
+		for(int j=0; j<columnas; j++){
+			cout<<matriz[i][j]<<" ";
+		}
+	cout<<endl;
+	}
+}
+	
+
+/*	M: número a sumar.
+	lista: lista de numeros.
+   	n:primer numero de la lista
+	sol: solucion, lista de enteros que suman B
+	m:numero de enteros de la solucion.
+*/
+
+bool factible(vector<int> &conjunto, int matriz[50][50],int filas,int &numero,bool fact,int &contador){
+	
+	bool resultado=false;
+	while(!resultado){
+
+		if(matriz[contador][numero]==0){
+			//int var=matriz[contador][0];
+			//cout<<" La variable es "<<var;
+			//conjunto.push_back(var);
+			//numero=numero-var;
+			cout<<contador<<endl;
+			contador=contador-1;
+			resultado=factible(conjunto,matriz,filas,numero,resultado,contador);
+		}else
+			contador=contador-1;
+
+
+		if(numero==0){
+			resultado=true;
+		}
+		/*if (matriz[i][numero]==0){
+			int var=matriz[i][0];
+			conjunto.push_back(var);
+			numero=numero-matriz[i][0];
+			fact=factible(conjunto,matriz,filas,numero,fact);
+		}else
+			fact=true;*/
+		 
+	}
+
+	return fact;
+}
+
+vector <int> Seleccion(int matriz[50][50],int filas,int &numero){
+	vector <int> conjunto;
+	bool encontrado=false;
+	bool intentar=true;
+	int contador=filas-1;
+	while(!encontrado){
+		if(intentar){	
+			intentar=factible(conjunto,matriz,filas,numero,!intentar,contador);
+			cout<<"Aqui llega el nuevo numero 1 "<<numero<<endl;
+		}else if(!intentar){
+			int resto=numero-1;
+			intentar=factible(conjunto,matriz,filas,numero,!intentar,contador);
+			cout<<"Aqui llega el nuevo numero 2 "<<numero<<endl;
+		}
+		if(numero==0){
+			encontrado=true;
+
+		}
+	}
+
+	return conjunto;
+
+
+}	
+int main(int argc, char* argv[]){
+
+	if(argc !=3){
+      		cout<<"Los parametros son:"<<endl;
+      		cout<<"1.-El fichero con las tareas"<<endl;
+      		cout<<"2.-El numero que queremos conseguir."<<endl;
+	 }
+
+	int numero=atoi(argv[2]);
+	ifstream f(argv[1]);
+	if (!f){
+	      cout<<"No puedo abrir" <<argv[1]<<endl;
+	      return 0;
+	  }  
+	vector <int> conjunto_datos;
+
+	f>>conjunto_datos;
+	int columnas=numero+2;
+	int filas=conjunto_datos.size();
+	cout<<"FILAS :"<<filas<<endl;
+	cout<<"COLUMNAS :"<<columnas<<endl;
+	int matriz [50][50];
+	int ncol=columnas;
+	
+	vector<int> conjunto_seleccionado;
+
+	Rellenar_matriz(matriz,conjunto_datos,filas,columnas);
+	Imprime_matriz(matriz,filas,columnas);
+	conjunto_seleccionado=Seleccion(matriz,filas,ncol);
+	
+	cout<<"el conjunto es : (";
+	for(int i=0; i<conjunto_seleccionado.size() ; i++){
+		cout<<i<<" , ";
+	}
+	cout<<")";
+
+}
+
+	
+
+
